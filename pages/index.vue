@@ -16,7 +16,8 @@
                   :key="post._id"
                   :title="post.title"
                   :subtitle="post.subtitle"
-                  :date="post.createdAt"
+                  :date="post.createdAt",
+                  :isRead="post.isRead"
                 />
               </div>
               <!-- end of post -->
@@ -45,13 +46,15 @@ export default {
           _id: '1',
           title: 'My First Post',
           subtitle: 'My First Subtitle',
-          createdAt: new Date()
+          createdAt: new Date(),
+          isRead: false
         },
         {
           _id: '2',
           title: 'My Second Post',
           subtitle: 'My Second Subtitle',
-          createdAt: new Date()
+          createdAt: new Date(),
+          isRead: true
         },
       ]
     }
@@ -59,15 +62,5 @@ export default {
 }
 </script>
 <style>
-.post-content {
-  font-style: italic;
-}
-.post {
-  margin-bottom: 20px;
-  padding: 5px;
-  border-bottom: 2px solid transparent;
-}
-.post:hover {
-  border-bottom: 2px solid #e8e8e8;
-}
+
 </style>
