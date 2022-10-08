@@ -1,11 +1,19 @@
 <template>
   <div class="post">
-    <a class="post-header post-header-link clickable">
-      <h4 class="title is-4">{{title}}</h4>
-      <h5 class="subtitle is-5">{{ subtitle }}</h5>
-    </a>
     <div class="post-content">
-      by Filip Jerga, 27th Jan, 2019
+      <a class="post-header post-header-link clickable">
+        <h4 class="title is-4">{{title}}</h4>
+        <h5 class="subtitle is-5">{{ subtitle }}</h5>
+      </a>
+      <div class="post-footer">
+        by Filip Jerga, {{ date | formatDate }}
+      </div>
+    </div>
+    <div class="post-right">
+      <label class="checkbox">
+        <input type="checkbox" :checked="isRead">
+        Read
+      </label>
     </div>
   </div>
 </template>
@@ -14,6 +22,11 @@
 import moment from 'moment'
 export default {
   name: "PostItem",
+  data(){
+    return{
+      moment
+    }
+  },
   props:{
     title:{
       type: String,
@@ -25,12 +38,41 @@ export default {
     },
     date:{
       type: Date,
+      required: false,
+      default: new Date()
+    },
+    isRead:{
+      type: Boolean,
       required: false
     }
+  },
+  methods:{
+
   }
 }
 </script>
 
 <style scoped>
+.post-footer {
+  font-style: italic;
+}
+.post {
+  margin-bottom: 20px;
+  padding: 5px;
+  border-bottom: 2px solid transparent;
+  display: flex;
+  flex-direction: row;          isRead: false
 
+}
+.post-content {
+  flex: 1;
+}
+.post-right {
+  float: right;
+  justify-content: flex-end;
+  align-self: center;
+}
+.post:hover {
+  border-bottom: 2px solid #e8e8e8;
+}
 </style>
